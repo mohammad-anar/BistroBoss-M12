@@ -21,7 +21,7 @@ const OrderCard = ({menu}) => {
         image,
         price
       }
-      axios.post("http://localhost:5000/carts", cartData)
+      axios.post("https://bistro-boss-server-psi-six.vercel.app/carts", cartData)
       .then(res => {
         toast.success("cart saved")
         refetch()

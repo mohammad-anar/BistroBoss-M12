@@ -18,6 +18,7 @@ import UpdateItems from "../Pages/Dashboard/ManageItems/UpdateItems";
 import axios from "axios";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
+import AdminHome from "../Pages/Dashboard/Adminhome/AdminHome";
 
 const Routes = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const Routes = createBrowserRouter([
     element:<PrivateRoute> <DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
+        path: "adminhome",
+        element: <AdminHome></AdminHome>
+      },
+      {
         path: "carts",
         element: <Cart></Cart>,
       },
@@ -74,7 +79,7 @@ const Routes = createBrowserRouter([
       {
         path: "updateitem/:id",
         element: <AdminRoutes><UpdateItems/></AdminRoutes>,
-        loader: ({params}) => axios.get(`http://localhost:5000/menus/${params.id}`)
+        loader: ({params}) => axios.get(`https://bistro-boss-server-psi-six.vercel.app/menus/${params.id}`)
       },
       {
         path: "paymenthistory",

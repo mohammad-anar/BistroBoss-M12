@@ -32,17 +32,21 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider)
   }
   const gitHubSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubProvider)
   }
 
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   }
   
   const updateUser = (name, photo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
         displayName:name, photoURL:photo
     });
@@ -57,6 +61,7 @@ const AuthProvider = ({ children }) => {
           .then(res=> {
             const token = res.data;
             localStorage.setItem("access_token", token)
+            setLoading(false);
           })
           .catch(err => {
             console.log(err);
@@ -65,8 +70,9 @@ const AuthProvider = ({ children }) => {
         }else{
           // remove token
           localStorage.removeItem("access_token")
+          setLoading(false);
         }
-        setLoading(false);
+        
     })
     return()=> {
         unSubscribe()

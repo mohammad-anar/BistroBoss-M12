@@ -4,10 +4,12 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useMyContext from "../../../Hooks/useMyContext";
 
 const PaymentHistory = () => {
-  const { user } = useMyContext();
+  const { user ,loading} = useMyContext();
+  console.log(loading);
   const axiosSecure = useAxiosSecure();
-  const { data: payments, isLoading } = useQuery({
+  const { data: payments, isloading: isLoadingData } = useQuery({
     queryKey: ["paymenthistory"],
+    enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/payment/${user?.email}`);
       return res.data;
@@ -39,7 +41,7 @@ const PaymentHistory = () => {
                 <th>Date</th>
               </tr>
             </thead>
-            {isLoading || <tbody>
+            {isLoadingData || <tbody>
               {/* row 1 */}
               {payments?.map((payment, index) => (
                 <tr key={payment._id}>

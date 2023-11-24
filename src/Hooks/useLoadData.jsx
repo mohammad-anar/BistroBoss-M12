@@ -12,7 +12,7 @@ const useLoadData = () => {
   })
   //   const [menus, setMenus] = useState([]);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/menus")
+  //   fetch("https://bistro-boss-server-psi-six.vercel.app/menus")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);

@@ -12,6 +12,7 @@ const useGetAdmin = () => {
         queryKey: [user?.email, "isAdmin"],
         enabled: !!user?.email && !!token, // check if email and token have or not. if token and email have then run query function
         queryFn: async () => {
+            console.log("asking or checking is admin?", user);
             const result = await axiosSecure.get(`/users/admin/${user?.email}`);
            
             return result.data?.admin
